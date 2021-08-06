@@ -1,0 +1,24 @@
+{
+  "name": "employee-tracker-repo",
+  "version": "1.0.0",
+  "description": "![badges](https://img.shields.io/badge/license-MIT_License-brightgreen)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acromarti01/employee-tracker-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acromarti01/employee-tracker-repo/issues"
+  },
+  "homepage": "https://github.com/acromarti01/employee-tracker-repo#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  }
+}
