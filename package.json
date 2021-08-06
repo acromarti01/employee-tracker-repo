@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/acromarti01/employee-tracker-repo#readme",
   "dependencies": {
-    "inquirer": "^8.1.2"
+    "inquirer": "^8.1.2",
+    "mysql2": "^2.3.0"
   }
 }
