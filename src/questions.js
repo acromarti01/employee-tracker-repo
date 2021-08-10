@@ -1,3 +1,5 @@
+const Department = require("../lib/Department");
+
 module.exports = {
     menu_questions : [
         {
@@ -36,18 +38,13 @@ module.exports = {
             message: "What is the salary of the role? "
         },
         {
-            type: "input",
+            type: "list",
             name: "role_which_department",
             message: "Which department does the role belong to? ",
-            choices:
-                [
-                 "Engineering",
-                 "Finance",
-                 "Legal",
-                 "Sales",
-                 "Service"                
-                ],
-            loop: false
+            choices: async function(){                 
+                return await getDepartmentNames();
+            }
+
         }
     ],
     employee_questions: [
@@ -93,3 +90,12 @@ module.exports = {
 
 }
 
+async function getDepartmentNames()
+{
+    const res = await new Department().getDepartmentNames();
+    console.log(res);
+    return res;
+        //console.log(Array.isArray(res));
+    //console.log(res[0], typeof(res[0]));
+        
+}
