@@ -1,12 +1,11 @@
 module.exports = {
-    q1: [
+    menu_questions : [
         {
             type: "list",
             name: "options",
             message: "What would you like to do?" ,
             choices:
-                [
-                 "View All Departments",
+                ["View All Departments",
                  "View All Roles",
                  "View All Employees",
                  "Add Department",
