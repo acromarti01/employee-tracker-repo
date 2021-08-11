@@ -1,4 +1,5 @@
 const Department = require("../lib/Department");
+const Employee = require("../lib/Employee");
 const Role = require("../lib/Role");
 
 module.exports = {
@@ -69,11 +70,9 @@ module.exports = {
             type: "input",
             name: "employee_manager",
             message: "Who is the employee's manager? ",
-            choices:
-                [
-                 "FILL IN USING MYSQL!!!!!",             
-                ],
+            choices: async function(){ return await new Employee().getManagers(); },
             loop: false
+                
         }
     ]
 }
