@@ -22,4 +22,4 @@
 -- INNER JOIN employee ON role.id = employee.role_id)
 -- INNER JOIN department ON role.department_id = department.id);
 
-INSERT INTO department(name) VALUES("Soccer");
+SELECT id FROM department where department.name = name

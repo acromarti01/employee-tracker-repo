@@ -4,9 +4,10 @@ const mysql = require('mysql2');
 const mysqlPromise = require('mysql2/promise');
 const inquirer = require('inquirer')
 const cTable = require('console.table');
-const { menu_questions, department_questions, role_questions } = require('./src/questions');
+const { menu_questions, department_questions, role_questions, employee_questions } = require('./src/questions');
 const Department = require("./lib/Department");
 const Role = require("./lib/Role");
+const Employee = require('./lib/Employee');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -35,8 +36,10 @@ async function getConnection()
 startIt();
 async function startIt()
 {
+    let responses;
     const department = new Department();
     const role = new Role();
+    const employee = new Employee();
     const answer = await inquirer.prompt(menu_questions);
     switch (answer.options)
     {
@@ -47,19 +50,20 @@ async function startIt()
             role.viewAllRoles().then(res => startIt());
             break; 
         case "View All Employees":
-            viewAllEmployees()
-            .then(res => startIt());
+            employee.viewAllEmployees().then(res => startIt());
             break;
         case "Add Department":            
-            const responses = await inquirer.prompt(department_questions);
+            responses = await inquirer.prompt(department_questions);
             department.addDepartment(responses).then(res => startIt());
             break;
         case "Add Role":
-            const role_responses = await inquirer.prompt(role_questions);
-            addRole(role_responses)
-            .then(res => startIt());
+            responses = await inquirer.prompt(role_questions);
+            role.addRole(responses).then(res => startIt());
             break;
-                   
+        case "Add Employee":
+            responses = await inquirer.prompt(employee_questions);
+            employee.addEmployee(responses).then(res => startIt());
+            break;                   
         default:
             break;
     }
@@ -70,44 +74,9 @@ async function startIt()
 
 
 
-async function viewAllEmployees()
-{
-    const query = "SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary FROM employee, role, department WHERE department.id = department_id AND role.id = role_id" 
-    const db_conn = await mysqlPromise.createConnection(
-        {
-            host: process.env.HOST || 'localhost',
-            // MySQL username,
-            user: process.env.DB_USERNAME || 'root',
-            // MySQL password
-            password: process.env.DB_PASSWORD || '',
-            database: process.env.DATABASE || 'employee_tracker_db',
-        }        
-    ); 
-    const results = await db_conn.query(query);
-    console.log(cTable.getTable(results[0]));           
-    db_conn.end();           
-}
 
 
 
-async function addRole(responses)
-{
-    const { role_name, role_salary, role_which_department } = responses;
-    const query = "INSERT INTO role (title, salary, department_id) VALUES (?,?,?)";
-    const db_conn = await mysqlPromise.createConnection(
-        {
-            host: process.env.HOST || 'localhost',
-            // MySQL username,
-            user: process.env.DB_USERNAME || 'root',
-            // MySQL password
-            password: process.env.DB_PASSWORD || '',
-            database: process.env.DATABASE || 'employee_tracker_db',
-        }        
-    ); 
-    db_conn.query(query, [role_name, role_salary, role_which_department]);
-    console.log(`${role_name} has been added to Database`);          
-    db_conn.end();           
-}
 
 //getDepartmentNames();
 

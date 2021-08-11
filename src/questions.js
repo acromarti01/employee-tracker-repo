@@ -1,4 +1,5 @@
 const Department = require("../lib/Department");
+const Role = require("../lib/Role");
 
 module.exports = {
     menu_questions : [
@@ -41,9 +42,8 @@ module.exports = {
             type: "list",
             name: "role_which_department",
             message: "Which department does the role belong to? ",
-            choices: async function(){                 
-                return await getDepartmentNames();
-            }
+            choices: async function(){ return await new Department().getDepartmentNames(); },
+            loop: false
 
         }
     ],
@@ -59,21 +59,10 @@ module.exports = {
             message: "What is the employee's last name? "
         },
         {
-            type: "input",
+            type: "list",
             name: "employee_role",
             message: "What is the employee's role? ",
-            choices:
-                [
-                 "Sales Lead",
-                 "Salesperson",
-                 "Lead Engineer",
-                 "Software Engineer",
-                 "Account Manager",
-                 "Accountant",
-                 "Legal Team Lead",
-                 "Lawyer",
-                 "Customer Service"                
-                ],
+            choices: async function(){ return await new Role().getRoleTitles(); },
             loop: false
         },
         {
@@ -87,15 +76,5 @@ module.exports = {
             loop: false
         }
     ]
-
 }
 
-async function getDepartmentNames()
-{
-    const res = await new Department().getDepartmentNames();
-    console.log(res);
-    return res;
-        //console.log(Array.isArray(res));
-    //console.log(res[0], typeof(res[0]));
-        
-}
