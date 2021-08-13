@@ -19,22 +19,13 @@
 -- WHERE department.id = department_id AND role.id = role_id;
 
 
-SELECT e.first_name as fname, e.last_name, concat(m.first_name + ' ' + m.last_name) as managers_name, e.manager_id
-FROM employee e 
-LEFT JOIN employee m ON (e.id = m.manager_id);
-
-SELECT e.first_name, e.last_name, concat(m.first_name," ",m.last_name) as managers_name, e.manager_id, m.manager_id 
-FROM employee e
-LEFT JOIN employee m ON (e.id = m.manager_id);
-
-
-SELECT * 
-FROM employee e
-LEFT JOIN employee m ON (e.id = m.manager_id); 
-
-SELECT *
-FROM employee e
-LEFT JOIN employee m ON (e.id = m.manager_id AND m.id IS NOT NULL);
+-- SELECT m.first_name, m.last_name, m.manager_id, concat(e.first_name, " ", e.last_name) as managers_name
+-- FROM employee e
+-- RIGHT JOIN employee m ON (e.id = m.manager_id);
  
-
+-- SELECT m.id, m.first_name, m.last_name, r.title, d.name, r.salary, concat(e.first_name, " ", e.last_name) as managers_name
+-- FROM employee e, 
+-- RIGHT JOIN role r ON r.department_id = d.id
+-- , department d
+-- RIGHT JOIN employee m ON (e.id = m.manager_id);
 
