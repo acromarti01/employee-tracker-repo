@@ -14,19 +14,22 @@
 -- including employee ids, first names, last names, job titles, departments, salaries, 
 -- and managers that the employees report to
 
--- SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary  
--- FROM employee, role, department
--- WHERE department.id = department_id AND role.id = role_id;
+SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary  
+FROM employee, role, department
+WHERE department.id = department_id AND role.id = role_id;
 
 
 SELECT m.first_name, m.last_name, m.manager_id, concat(e.first_name, " ", e.last_name) as managers_name
 FROM employee e
 RIGHT JOIN employee m ON (e.id = m.manager_id);
  
-SELECT m.id, m.first_name, m.last_name, title, d.name, r.salary, concat(m.first_name, " ", m.last_name) as managers_name
-FROM employee m
-RIGHT JOIN role r ON m.role_id = r.id
-RIGHT JOIN department d ON r.department_id = d.id;
+
+SELECT m.id, m.first_name, m.last_name, r.title, d.name, r.salary, concat(e.first_name, " ", e.last_name) as managers_name
+FROM employee e
+RIGHT JOIN employee m ON (e.id = m.manager_id)
+RIGHT JOIN role r ON (m.role_id = r.id)
+RIGHT JOIN department d ON (r.department_id = d.id);
+
 
 
 
