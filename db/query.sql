@@ -23,7 +23,7 @@ SELECT e.first_name as fname, e.last_name, concat(m.first_name + ' ' + m.last_na
 FROM employee e 
 LEFT JOIN employee m ON (e.id = m.manager_id);
 
-SELECT e.first_name, e.last_name, concat(m.first_name," ",m.last_name) as managers_name, e.manager_id 
+SELECT e.first_name, e.last_name, concat(m.first_name," ",m.last_name) as managers_name, e.manager_id, m.manager_id 
 FROM employee e
 LEFT JOIN employee m ON (e.id = m.manager_id);
 
@@ -32,9 +32,9 @@ SELECT *
 FROM employee e
 LEFT JOIN employee m ON (e.id = m.manager_id); 
 
--- SELECT *
--- FROM employee e
--- LEFT JOIN employee m ON (e.id = m.manager_id AND );
+SELECT *
+FROM employee e
+LEFT JOIN employee m ON (e.id = m.manager_id AND m.id IS NOT NULL);
  
 
 
