@@ -70,7 +70,7 @@ module.exports = {
             type: "list",
             name: "employee_manager",
             message: "Who is the employee's manager? ",
-            choices: async function(){ return await new Employee().getEmployeeNames(); },
+            choices: async function(){ return await new Employee().getManagerNames(); },
             loop: false                
         }
     ],

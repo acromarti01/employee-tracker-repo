@@ -25,33 +25,34 @@ async function startIt()
     switch (answer.options)
     {
         case "View All Departments":            
-            department.viewAllDepartments().then(res => startIt());
+            await department.viewAllDepartments(); 
             break;
         case "View All Roles":
-            role.viewAllRoles().then(res => startIt());
+            await role.viewAllRoles();
             break; 
         case "View All Employees":
-            employee.viewAllEmployees().then(res => startIt());
+            await employee.viewAllEmployees();
             break;
         case "Add Department":            
             responses = await inquirer.prompt(department_questions);
-            department.addDepartment(responses).then(res => startIt());
+            await department.addDepartment(responses);
             break;
         case "Add Role":
             responses = await inquirer.prompt(role_questions);
-            role.addRole(responses).then(res => startIt());
+            await role.addRole(responses);
             break;
         case "Add Employee":
             responses = await inquirer.prompt(employee_questions);
-            employee.addEmployee(responses).then(res => startIt());
+            await employee.addEmployee(responses);
             break; 
         case "Update Employee Role":
             responses = await inquirer.prompt(update_questions);
-            employee.updateEmployeeRole(responses).then(res => startIt());
+            await employee.updateEmployeeRole(responses);
             break;                  
         default:
             break;
     }
+    await startIt();
 }
 
 

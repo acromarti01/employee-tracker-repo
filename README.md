@@ -4,11 +4,8 @@
 
 ## Description
 
-The project allows the user to -------------------------------------------------------------------------------
-
-## ScreenShot
-
-![Image](./images/screenshot.png)
+The project allows the user to be able to view and manage departments, roles, and employees in a company
+so that the user can organize and plan a business
 
 ## Table of Contents
 
@@ -26,7 +23,7 @@ To install dependecies in the terminal use npm install
 
 ## Usage
 
-To run the application use ----------------------------------------------------------------------------------------
+To run the application use node index.js
 
 ## License
 
@@ -46,7 +43,9 @@ GitHub Profile: <a href="https://github.com/acromarti01">https://github.com/acro
 
 Any additional question you can reach me at <u>acromarti@gmail.com</u>
 
-## Link to Deployed Website
+## Link to Video
+
+https://drive.google.com/file/d/1sS0fzzeiJPgGbSPonGLsN4F_63C-2OGS/view
 
 
 
