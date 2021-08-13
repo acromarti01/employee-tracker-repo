@@ -67,12 +67,27 @@ module.exports = {
             loop: false
         },
         {
-            type: "input",
+            type: "list",
             name: "employee_manager",
             message: "Who is the employee's manager? ",
-            choices: async function(){ return await new Employee().getManagers(); },
-            loop: false
-                
+            choices: async function(){ return await new Employee().getEmployeeNames(); },
+            loop: false                
+        }
+    ],
+    update_questions: [
+        {
+            type: "list",
+            name: "update_employee_name",
+            message: "Which employee's role do you want to update? ",
+            choices: async function(){ return await new Employee().getEmployeeNames(); },
+            loop: false                
+        },
+        {
+            type: "list",
+            name: "update_employee_role",
+            message: "Which role do you want to assign the selected employee? ",
+            choices: async function(){ return await new Role().getRoleTitles(); },
+            loop: false                
         }
     ]
 }

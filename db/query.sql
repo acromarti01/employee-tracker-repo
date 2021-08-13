@@ -13,13 +13,28 @@
 -- THEN I am presented with a formatted table showing employee data, 
 -- including employee ids, first names, last names, job titles, departments, salaries, 
 -- and managers that the employees report to
+
 -- SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary  
 -- FROM employee, role, department
 -- WHERE department.id = department_id AND role.id = role_id;
 
--- SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary
--- FROM ((role
--- INNER JOIN employee ON role.id = employee.role_id)
--- INNER JOIN department ON role.department_id = department.id);
 
-SELECT first FROM department where department.name = name
+SELECT e.first_name as fname, e.last_name, concat(m.first_name + ' ' + m.last_name) as managers_name, e.manager_id
+FROM employee e 
+LEFT JOIN employee m ON (e.id = m.manager_id);
+
+SELECT e.first_name, e.last_name, concat(m.first_name," ",m.last_name) as managers_name, e.manager_id 
+FROM employee e
+LEFT JOIN employee m ON (e.id = m.manager_id);
+
+
+SELECT * 
+FROM employee e
+LEFT JOIN employee m ON (e.id = m.manager_id); 
+
+-- SELECT *
+-- FROM employee e
+-- LEFT JOIN employee m ON (e.id = m.manager_id AND );
+ 
+
+

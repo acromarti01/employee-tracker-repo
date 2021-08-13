@@ -1,10 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const mysql = require('mysql2');
-const mysqlPromise = require('mysql2/promise');
 const inquirer = require('inquirer')
-const cTable = require('console.table');
-const { menu_questions, department_questions, role_questions, employee_questions } = require('./src/questions');
+const { menu_questions, department_questions, role_questions, employee_questions, update_questions } = require('./src/questions');
 const Department = require("./lib/Department");
 const Role = require("./lib/Role");
 const Employee = require('./lib/Employee');
@@ -15,23 +12,7 @@ const app = express();
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// Connect to database
 
-async function getConnection()
-{
-    const db_conn = await mysqlPromise.createConnection(
-        {
-            host: process.env.HOST || 'localhost',
-            // MySQL username,
-            user: process.env.DB_USERNAME || 'root',
-            // MySQL password
-            password: process.env.DB_PASSWORD || '',
-            database: process.env.DATABASE || 'employee_tracker_db',
-        },
-        console.log(`Connected to the employee_tracker_db database.`)
-    );
-    return db_conn;
-}
 
 startIt();
 async function startIt()
@@ -63,11 +44,14 @@ async function startIt()
         case "Add Employee":
             responses = await inquirer.prompt(employee_questions);
             employee.addEmployee(responses).then(res => startIt());
-            break;                   
+            break; 
+        case "Update Employee Role":
+            responses = await inquirer.prompt(update_questions);
+            employee.updateEmployeeRole(responses).then(res => startIt());
+            break;                  
         default:
             break;
     }
-    //return answer;
 }
 
 
