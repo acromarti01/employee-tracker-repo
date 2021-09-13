@@ -9,12 +9,25 @@ so that the user can organize and plan a business
 
 ## Table of Contents
 
+- [Technologies](#technologies)
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
+
+## Technologies
+
+<ul>
+    <li>HTML5</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+    <li>Inquirer</li>
+    <li>Express<li>
+    <li>MySql<li>
+    <li>Node<li>
+</ul>
 
 
 ## Installation

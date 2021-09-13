@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const inquirer = require('inquirer')
-const { menu_questions, department_questions, role_questions, employee_questions, update_questions } = require('./src/questions');
+const { menu_questions, department_questions, role_questions, 
+        employee_questions, update_employee_role_questions,  update_managers_questions,
+        view_employees_by_manager_questions, view_employees_by_department_questions} = require('./src/questions');
 const Department = require("./lib/Department");
 const Role = require("./lib/Role");
 const Employee = require('./lib/Employee');
@@ -33,6 +35,14 @@ async function startIt()
         case "View All Employees":
             await employee.viewAllEmployees();
             break;
+        case "View Employees By Manager":
+            responses = await inquirer.prompt(view_employees_by_manager_questions);
+            await employee.viewEmployeesByManager(responses);
+            break;
+        case "View Employees By Department":
+            responses = await inquirer.prompt(view_employees_by_department_questions);
+            await employee.viewEmployeesByDepartment(responses);
+            break;
         case "Add Department":            
             responses = await inquirer.prompt(department_questions);
             await department.addDepartment(responses);
@@ -46,9 +56,13 @@ async function startIt()
             await employee.addEmployee(responses);
             break; 
         case "Update Employee Role":
-            responses = await inquirer.prompt(update_questions);
+            responses = await inquirer.prompt(update_employee_role_questions);
             await employee.updateEmployeeRole(responses);
-            break;                  
+            break; 
+        case "Update Employee Manager":
+            responses = await inquirer.prompt(update_managers_questions);
+            await employee.updateManager(responses);
+            break;
         default:
             break;
     }

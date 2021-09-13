@@ -12,10 +12,13 @@ module.exports = {
                 ["View All Departments",
                  "View All Roles",
                  "View All Employees",
+                 "View Employees By Manager",
+                 "View Employees By Department",
                  "Add Department",
                  "Add Role",
                  "Add Employee",
-                 "Update Employee Role",               
+                 "Update Employee Role",
+                 "Update Employee Manager",               
                  "Quit"
                 ],
             loop: false
@@ -74,7 +77,7 @@ module.exports = {
             loop: false                
         }
     ],
-    update_questions: [
+    update_employee_role_questions: [
         {
             type: "list",
             name: "update_employee_name",
@@ -87,6 +90,40 @@ module.exports = {
             name: "update_employee_role",
             message: "Which role do you want to assign the selected employee? ",
             choices: async function(){ return await new Role().getRoleTitles(); },
+            loop: false                
+        }
+    ],
+    update_managers_questions: [
+        {
+            type: "list",
+            name: "employee_name",
+            message: "Which employee's manager do you want to update? ",
+            choices: async function(){ return await new Employee().getEmployeeNames(); },
+            loop: false                
+        },
+        {
+            type: "list",
+            name: "new_manager",
+            message: "Whose is the new manager for the selected employee? ",
+            choices: async function(){ return await new Employee().getManagerNames(); },
+            loop: false                
+        },
+    ],
+    view_employees_by_manager_questions: [
+        {
+            type: "list",
+            name: "manager_name",
+            message: "Which manager's employees do you want to view? ",
+            choices: async function(){ return await new Employee().getEmployeeNames(); },
+            loop: false                
+        }
+    ],
+    view_employees_by_department_questions: [
+        {
+            type: "list",
+            name: "department_name",
+            message: "Which department's employees do you want to view? ",
+            choices: async function(){ return await new Department().getDepartmentNames(); },
             loop: false                
         }
     ]

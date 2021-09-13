@@ -14,21 +14,26 @@
 -- including employee ids, first names, last names, job titles, departments, salaries, 
 -- and managers that the employees report to
 
-SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary  
-FROM employee, role, department
-WHERE department.id = department_id AND role.id = role_id;
+-- SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary  
+-- FROM employee, role, department
+-- WHERE department.id = department_id AND role.id = role_id;
 
 
-SELECT m.first_name, m.last_name, m.manager_id, concat(e.first_name, " ", e.last_name) as managers_name
-FROM employee e
-RIGHT JOIN employee m ON (e.id = m.manager_id);
+-- SELECT m.first_name, m.last_name, m.manager_id, concat(e.first_name, " ", e.last_name) as managers_name
+-- FROM employee e
+-- RIGHT JOIN employee m ON (e.id = m.manager_id);
  
 
-SELECT m.id, m.first_name, m.last_name, r.title, d.name, r.salary, concat(e.first_name, " ", e.last_name) as managers_name
+-- SELECT m.id, m.first_name, m.last_name, r.title, d.name, r.salary, concat(e.first_name, " ", e.last_name) as managers_name
+-- FROM employee e
+-- RIGHT JOIN employee m ON (e.id = m.manager_id AND m.id IS NOT NULL AND e.id IS NOT NULL)
+-- RIGHT JOIN role r ON (m.role_id = r.id)
+-- RIGHT JOIN department d ON (r.department_id = d.id);
+
+SELECT e.id, e.first_name, e.last_name, r.title, d.name, r.salary, d.id
 FROM employee e
-RIGHT JOIN employee m ON (e.id = m.manager_id AND m.id IS NOT NULL AND e.id IS NOT NULL)
-RIGHT JOIN role r ON (m.role_id = r.id)
-RIGHT JOIN department d ON (r.department_id = d.id);
+NATURAL JOIN role r WHERE e.role_id = r.id
+NATURAL JOIN department d WHERE r.department_id = d.id AND d.name = "Sales";
 
 
 
