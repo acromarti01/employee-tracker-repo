@@ -7,6 +7,10 @@
 The project allows the user to be able to view and manage departments, roles, and employees in a company
 so that the user can organize and plan a business
 
+## ScreenShot
+
+![Image](./assets/images/screenshot.png)
+
 ## Table of Contents
 
 - [Technologies](#technologies)
@@ -24,9 +28,9 @@ so that the user can organize and plan a business
     <li>CSS</li>
     <li>JavaScript</li>
     <li>Inquirer</li>
-    <li>Express<li>
-    <li>MySql<li>
-    <li>Node<li>
+    <li>Express</li>
+    <li>MySql</li>
+    <li>Node</li>
 </ul>
 
 
