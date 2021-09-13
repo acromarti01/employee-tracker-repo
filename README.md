@@ -10,6 +10,7 @@ so that the user can organize and plan a business
 ## ScreenShot
 
 ![Image](./assets/images/screenshot.png)
+![Image](./assets/images/screenshot2.png)
 
 ## Table of Contents
 
